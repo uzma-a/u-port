@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uruz Naaz - Finance & Business Analyst</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0516 0%, #1a0b2e 25%, #2d1b69 50%, #4c1d95 75%, #6b21a8 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 135, 135, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            33% {
+                transform: translateY(-20px) rotate(1deg);
+            }
+
+            66% {
+                transform: translateY(10px) rotate(-1deg);
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 0;
+            background: rgba(10, 5, 22, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-radius: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links li a:hover {
+            color: #a855f7;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #a855f7;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: rgba(168, 85, 247, 0.1);
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #a855f7;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            max-width: 300px;
+            height: 100vh;
+            background: rgba(10, 5, 22, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6rem 2rem 2rem;
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-menu ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: #a855f7;
+            padding-left: 1rem;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-name {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #a855f7;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            flex-wrap: wrap;
+        }
+
+        .hero-button {
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-button.primary {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        }
+
+        .hero-button.secondary {
+            background: linear-gradient(135deg, #0077b5, #0ea5e9);
+        }
+
+        .hero-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .hero-button:hover::before {
+            left: 100%;
+        }
+
+        .hero-button.secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(10, 5, 22, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #a855f7;
+            margin-bottom: 2rem;
+        }
+
+        .footer-contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-item {
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        .footer-item strong {
+            color: #f1f5f9;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .contact-text {
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-underline {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            margin: 0 auto 4rem;
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+
+        .about-text::first-letter {
+            font-size: 4rem;
+            font-weight: bold;
+            float: left;
+            line-height: 1;
+            margin: 0.1rem 0.5rem 0 0;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .about-card {
+            background: rgba(10, 5, 22, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        .card-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #a855f7;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 8rem 2rem;
+            background: rgba(10, 5, 22, 0.3);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #f59e0b);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 25px 50px rgba(168, 85, 247, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Experience Section */
+        .experience-section {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #a855f7, #ec4899);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            background: rgba(10, 5, 22, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            margin-left: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.75rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background: #a855f7;
+            border: 3px solid #0a0516;
+            border-radius: 50%;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-company {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #a855f7;
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            color: #f1f5f9;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-date {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-details {
+            color: #cbd5e1;
+            margin: 1rem 0;
+        }
+
+        .project-tasks {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .project-tasks li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            color: #cbd5e1;
+        }
+
+        .project-tasks li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #a855f7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-button {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-item {
+                margin-left: 1rem;
+            }
+
+            .timeline-item::before {
+                left: -1.75rem;
+            }
+
+            .footer-contact {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 1rem;
+            }
+
+            .about-section,
+            .services-section,
+            .experience-section {
+                padding: 4rem 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">URUZ NAAZ</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home" class="mobile-link">Home</a></li>
+            <li><a href="#about" class="mobile-link">About</a></li>
+            <li><a href="#services" class="mobile-link">Services</a></li>
+            <li><a href="#experience" class="mobile-link">Experience</a></li>
+            <li><a href="#contact" class="mobile-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-name">URUZ NAAZ</h1>
+            <div class="hero-subtitle">
+                Finance & Business Analyst ⚡
+            </div>
+            <p class="hero-description">
+                MBA graduate with specialization in Finance, bringing fresh perspectives and analytical expertise to
+                solve complex business challenges. Specialized in financial planning, data analysis, market research,
+                and strategic decision-making with a proven track record of delivering exceptional results.
+            </p>
+            <div class="hero-buttons">
+                <a href="mailto:uruznaaz378@gmail.com" class="hero-button primary">
+                    📧 Email Me
+                </a>
+                <a href="https://linkedin.com/in/uruznaaz" target="_blank" class="hero-button secondary">
+                    💼 LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section fade-in">
+        <h2 class="section-title">About Me</h2>
+        <div class="section-underline"></div>
+
+        <div class="about-content">
+            <div class="about-text">
+                As a dedicated Finance professional with MBA specialization, I excel in financial analysis, strategic
+                planning, and business optimization. My expertise lies in transforming complex financial data into
+                actionable insights, driving revenue growth, and ensuring compliance with industry standards.
+
+                <br><br>I excel in driving business success through comprehensive financial planning, analytical
+                thinking, and effective team collaboration, ensuring all projects meet the highest standards and are
+                completed within deadlines.
+
+                <br><br>My comprehensive background includes investment analysis, portfolio management, risk assessment,
+                and market research across various business sectors.
+            </div>
+
+            <div class="about-cards">
+                <div class="about-card">
+                    <div class="card-icon">
+                        ⚡ 🔧 Financial Analysis
+                    </div>
+                    <div class="card-description">
+                        Expert in comprehensive financial modeling, forecasting, and analysis to drive strategic
+                        business decisions with precision and efficiency.
+                    </div>
+                </div>
+
+                <div class="about-card">
+                    <div class="card-icon">
+                        ⚡ 🛡️ Risk Management
+                    </div>
+                    <div class="card-description">
+                        Rigorous risk assessment and compliance strategies ensuring excellence in financial security and
+                        regulatory adherence.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section fade-in">
+        <div class="services-grid">
+            <h2 class="section-title" style="grid-column: 1/-1;">My Services</h2>
+            <div class="section-underline" style="grid-column: 1/-1;"></div>
+
+            <div class="service-card">
+                <span class="service-icon">📊</span>
+                <h3 class="service-title">Financial Analysis & Modeling</h3>
+                <p class="service-description">Comprehensive financial analysis, forecasting, and modeling to help you
+                    make strategic business decisions with confidence.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">💰</span>
+                <h3 class="service-title">Investment & Portfolio Management</h3>
+                <p class="service-description">Expert guidance on investment strategies and portfolio optimization to
+                    maximize returns while managing risk.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">📈</span>
+                <h3 class="service-title">Budgeting & Forecasting</h3>
+                <p class="service-description">Strategic budgeting and accurate financial forecasting to ensure
+                    sustainable business growth and profitability.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🎯</span>
+                <h3 class="service-title">Business Research & Analysis</h3>
+                <p class="service-description">In-depth market research and business analysis to identify opportunities
+                    and competitive advantages.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">👥</span>
+                <h3 class="service-title">HR Analytics & Recruitment</h3>
+                <p class="service-description">Data-driven HR solutions including recruitment strategies, performance
+                    analysis, and talent acquisition.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">⚖️</span>
+                <h3 class="service-title">Risk Management & Compliance</h3>
+                <p class="service-description">Comprehensive risk assessment and compliance strategies to protect your
+                    business interests.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section fade-in">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="section-underline"></div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="project-header">
+                    <div class="project-company">Pregrad 🏢</div>
+                    <div class="project-date">📅 3 Months Program</div>
+                </div>
+                <div class="project-title">Advanced Finance Mentorship Program</div>
+                <div class="project-details">
+                    <strong>Program:</strong> Advanced Finance Mentorship | <strong>Focus:</strong> Financial Modeling &
+                    Investment Analysis
+                </div>
+                <ul class="project-tasks">
+                    <li>Completed comprehensive training in advanced financial modeling techniques</li>
+                    <li>Applied investment analysis methodologies to real-world scenarios</li>
+                    <li>Developed expertise in sophisticated budgeting and forecasting methods</li>
+                    <li>Enhanced practical skills in financial decision-making frameworks</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="project-header">
+                    <div class="project-company">Aliah University 🏢</div>
+                    <div class="project-date">📅 Event Coordination</div>
+                </div>
+                <div class="project-title">Chess Program Coordinator - Business Conclave</div>
+                <div class="project-details">
+                    <strong>Role:</strong> Event Coordinator | <strong>Event:</strong> Major Business Conclave
+                </div>
+                <ul class="project-tasks">
+                    <li>Successfully organized and managed chess tournament during business conclave</li>
+                    <li>Demonstrated exceptional leadership and project management skills</li>
+                    <li>Coordinated with multiple stakeholders and managed event logistics</li>
+                    <li>Showcased organizational and team coordination abilities</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="project-header">
+                    <div class="project-company">Academic Research 🏢</div>
+                    <div class="project-date">📅 Research Project</div>
+                </div>
+                <div class="project-title">Emotional Intelligence in Financial Decision Making</div>
+                <div class="project-details">
+                    <strong>Research:</strong> Academic Paper | <strong>Recognition:</strong> Faculty Appreciation
+                </div>
+                <ul class="project-tasks">
+                    <li>Conducted innovative research on psychology-finance intersection</li>
+                    <li>Presented findings on emotional intelligence impact on financial decisions</li>
+                    <li>Received faculty appreciation for innovative research approach</li>
+                    <li>Contributed to academic discourse in behavioral finance</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="footer-title">Contact Information</div>
+            <div class="footer-contact">
+                <div class="footer-item">
+                    <strong>Mobile:</strong> +91-81003 01014
+                </div>
+                <div class="footer-item">
+                    <strong>Email:</strong> uruznaaz378@gmail.com
+                </div>
+                <div class="footer-item">
+                    <strong>LinkedIn:</strong> linkedin.com/in/uruznaaz
+                </div>
+                <div class="footer-item">
+                    <strong>Location:</strong> Kolkata, India
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2024 Uruz Naaz. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMobileMenu() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', toggleMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu when clicking on a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(10, 5, 22, 0.95)';
+                navbar.style.borderBottom = '1px solid rgba(168, 85, 247, 0.2)';
+            } else {
+                navbar.style.background = 'rgba(10, 5, 22, 0.8)';
+                navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Prevent body scroll when mobile menu is open
+        const preventScroll = (e) => {
+            if (mobileMenu.classList.contains('active')) {
+                e.preventDefault();
+            }
+        };
+
+        document.addEventListener('touchmove', preventScroll, { passive: false });
+        document.addEventListener('wheel', preventScroll, { passive: false });
+    </script>
+</body>
+
+</html>
