@@ -346,6 +346,32 @@
             box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
         }
 
+        /* Skills Highlight */
+        .skills-highlight {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+        }
+
         /* Footer */
         .footer {
             background: rgba(10, 5, 22, 0.8);
@@ -627,6 +653,15 @@
             border-color: rgba(168, 85, 247, 0.3);
         }
 
+        .timeline-item.internship {
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            background: linear-gradient(135deg, rgba(10, 5, 22, 0.8), rgba(245, 158, 11, 0.05));
+        }
+
+        .timeline-item.internship::before {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+        }
+
         .project-header {
             display: flex;
             align-items: center;
@@ -639,6 +674,13 @@
             font-size: 1.3rem;
             font-weight: 600;
             color: #a855f7;
+        }
+
+        .project-company.internship-company {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .project-title {
@@ -678,6 +720,70 @@
             position: absolute;
             left: 0;
             color: #a855f7;
+        }
+
+        /* New Skills Section */
+        .skills-section {
+            padding: 6rem 2rem;
+            background: rgba(10, 5, 22, 0.2);
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 15px 30px rgba(168, 85, 247, 0.15);
+        }
+
+        .skill-category-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
         }
 
         /* Animations */
@@ -723,6 +829,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -750,6 +860,15 @@
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
+
+            .skills-highlight {
+                gap: 0.5rem;
+            }
+
+            .skill-badge {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -763,7 +882,8 @@
 
             .about-section,
             .services-section,
-            .experience-section {
+            .experience-section,
+            .skills-section {
                 padding: 4rem 1rem;
             }
 
@@ -789,6 +909,7 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -806,6 +927,7 @@
         <ul>
             <li><a href="#home" class="mobile-link">Home</a></li>
             <li><a href="#about" class="mobile-link">About</a></li>
+            <li><a href="#skills" class="mobile-link">Skills</a></li>
             <li><a href="#services" class="mobile-link">Services</a></li>
             <li><a href="#experience" class="mobile-link">Experience</a></li>
             <li><a href="#contact" class="mobile-link">Contact</a></li>
@@ -832,6 +954,9 @@
                     💼 LinkedIn
                 </a>
             </div>
+            
+            <!-- Highlighted Skills -->
+            
         </div>
     </section>
 
@@ -846,9 +971,11 @@
                 planning, and business optimization. My expertise lies in transforming complex financial data into
                 actionable insights, driving revenue growth, and ensuring compliance with industry standards.
 
+                <br><br>With hands-on experience in GST filing, income tax preparation, bookkeeping, and comprehensive data entry services, I bring practical skills alongside analytical thinking. My recent internship at NHPC Limited has further strengthened my understanding of corporate finance and business operations.
+
                 <br><br>I excel in driving business success through comprehensive financial planning, analytical
                 thinking, and effective team collaboration, ensuring all projects meet the highest standards and are
-                completed within deadlines.
+                completed within deadlines. Additionally, I have developed creative skills in video editing to support modern business communication needs.
 
                 <br><br>My comprehensive background includes investment analysis, portfolio management, risk assessment,
                 and market research across various business sectors.
@@ -857,21 +984,87 @@
             <div class="about-cards">
                 <div class="about-card">
                     <div class="card-icon">
-                        ⚡ 🔧 Financial Analysis
+                        ⚡ 🔧 Financial Analysis & Compliance
                     </div>
                     <div class="card-description">
-                        Expert in comprehensive financial modeling, forecasting, and analysis to drive strategic
-                        business decisions with precision and efficiency.
+                        Expert in comprehensive financial modeling, forecasting, GST & income tax filing, and bookkeeping to drive strategic
+                        business decisions with precision and regulatory compliance.
                     </div>
                 </div>
 
                 <div class="about-card">
                     <div class="card-icon">
-                        ⚡ 🛡️ Risk Management
+                        ⚡ 💼 Data Management & Documentation
                     </div>
                     <div class="card-description">
-                        Rigorous risk assessment and compliance strategies ensuring excellence in financial security and
-                        regulatory adherence.
+                        Proficient in accurate data entry, financial report preparation, and maintaining detailed records with exceptional attention to accuracy and compliance.
+                    </div>
+                </div>
+
+                <div class="about-card">
+                    <div class="card-icon">
+                        ⚡ 🛡️ Risk Management & Creative Skills
+                    </div>
+                    <div class="card-description">
+                        Rigorous risk assessment and compliance strategies combined with modern video editing skills for comprehensive business solutions and effective communication.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section fade-in">
+        <div class="skills-container">
+            <h2 class="section-title">Core Skills</h2>
+            <div class="section-underline"></div>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="skill-category-title">📊 Financial Services</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">GST Filing</span>
+                        <span class="skill-tag">Income Tax Filing</span>
+                        <span class="skill-tag">Financial Reports</span>
+                        <span class="skill-tag">Book Keeping</span>
+                        <span class="skill-tag">Financial Analysis</span>
+                        <span class="skill-tag">Budget Planning</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="skill-category-title">💻 Data & Administrative</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Entry</span>
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Excel Advanced</span>
+                        <span class="skill-tag">Documentation</span>
+                        <span class="skill-tag">Report Generation</span>
+                        <span class="skill-tag">Process Management</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="skill-category-title">🎯 Business & Strategy</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Market Research</span>
+                        <span class="skill-tag">Risk Assessment</span>
+                        <span class="skill-tag">Strategic Planning</span>
+                        <span class="skill-tag">Investment Analysis</span>
+                        <span class="skill-tag">Portfolio Management</span>
+                        <span class="skill-tag">Compliance</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="skill-category-title">🎬 Creative & Technical</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Video Editing</span>
+                        <span class="skill-tag">Content Creation</span>
+                        <span class="skill-tag">Presentation Design</span>
+                        <span class="skill-tag">Digital Marketing</span>
+                        <span class="skill-tag">Social Media</span>
+                        <span class="skill-tag">Communication</span>
                     </div>
                 </div>
             </div>
@@ -886,44 +1079,38 @@
 
             <div class="service-card">
                 <span class="service-icon">📊</span>
-                <h3 class="service-title">Financial Analysis & Modeling</h3>
-                <p class="service-description">Comprehensive financial analysis, forecasting, and modeling to help you
-                    make strategic business decisions with confidence.</p>
+                <h3 class="service-title">Financial Analysis & Reporting</h3>
+                <p class="service-description">Comprehensive financial analysis, custom report preparation, and modeling to help you make strategic business decisions with confidence.</p>
             </div>
 
             <div class="service-card">
                 <span class="service-icon">💰</span>
-                <h3 class="service-title">Investment & Portfolio Management</h3>
-                <p class="service-description">Expert guidance on investment strategies and portfolio optimization to
-                    maximize returns while managing risk.</p>
+                <h3 class="service-title">Tax Services & Compliance</h3>
+                <p class="service-description">Expert GST filing, income tax preparation, and compliance management to ensure your business meets all regulatory requirements.</p>
             </div>
 
             <div class="service-card">
                 <span class="service-icon">📈</span>
-                <h3 class="service-title">Budgeting & Forecasting</h3>
-                <p class="service-description">Strategic budgeting and accurate financial forecasting to ensure
-                    sustainable business growth and profitability.</p>
+                <h3 class="service-title">Bookkeeping & Data Entry</h3>
+                <p class="service-description">Accurate bookkeeping services, systematic data entry, and financial record maintenance for organized business operations.</p>
             </div>
 
             <div class="service-card">
                 <span class="service-icon">🎯</span>
                 <h3 class="service-title">Business Research & Analysis</h3>
-                <p class="service-description">In-depth market research and business analysis to identify opportunities
-                    and competitive advantages.</p>
+                <p class="service-description">In-depth market research and business analysis to identify opportunities and competitive advantages.</p>
             </div>
 
             <div class="service-card">
-                <span class="service-icon">👥</span>
-                <h3 class="service-title">HR Analytics & Recruitment</h3>
-                <p class="service-description">Data-driven HR solutions including recruitment strategies, performance
-                    analysis, and talent acquisition.</p>
+                <span class="service-icon">🎬</span>
+                <h3 class="service-title">Video Editing & Content Creation</h3>
+                <p class="service-description">Professional video editing services and creative content development for modern business communication and marketing needs.</p>
             </div>
 
             <div class="service-card">
                 <span class="service-icon">⚖️</span>
-                <h3 class="service-title">Risk Management & Compliance</h3>
-                <p class="service-description">Comprehensive risk assessment and compliance strategies to protect your
-                    business interests.</p>
+                <h3 class="service-title">Risk Management & Investment</h3>
+                <p class="service-description">Comprehensive risk assessment, investment analysis, and portfolio management strategies to protect and grow your assets.</p>
             </div>
         </div>
     </section>
@@ -934,6 +1121,24 @@
         <div class="section-underline"></div>
 
         <div class="timeline">
+            <div class="timeline-item internship">
+                <div class="project-header">
+                    <div class="project-company internship-company">NHPC Limited 🏢</div>
+                    <div class="project-date">📅 45 Days Internship</div>
+                </div>
+                <div class="project-title">Finance & Operations Intern</div>
+                <div class="project-details">
+                    <strong>Duration:</strong> 45 Days Industrial Training | <strong>Focus:</strong> Corporate Finance & Business Operations
+                </div>
+                <ul class="project-tasks">
+                    <li>Gained hands-on experience in corporate financial operations and procedures</li>
+                    <li>Analyzed financial statements and assisted in budget planning processes</li>
+                    <li>Learned about hydroelectric power sector business dynamics and financial management</li>
+                    <li>Developed understanding of government PSU operations and compliance requirements</li>
+                    <li>Enhanced practical knowledge of financial reporting and documentation standards</li>
+                </ul>
+            </div>
+
             <div class="timeline-item">
                 <div class="project-header">
                     <div class="project-company">Pregrad 🏢</div>
